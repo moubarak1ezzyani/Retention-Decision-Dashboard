@@ -15,7 +15,7 @@ ENV NODE_ENV production
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
-# Copie des fichiers buildés depuis l'étape 1
+# Copie des fichiers buildés depuis l'étape 1 (constr)
 COPY --from=builder /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
@@ -25,5 +25,5 @@ USER nextjs
 EXPOSE 3000
 
 ENV PORT 3000
-# On pointe vers le serveur Next.js optimisé
+
 CMD ["node", "server.js"]
