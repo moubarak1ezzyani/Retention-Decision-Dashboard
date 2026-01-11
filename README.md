@@ -1,4 +1,4 @@
-# 💻 RetentionAI - Tableau de Bord RH (Frontend)
+# 💻 Retention Decision Dashboard
 
 <div>
 
@@ -10,7 +10,13 @@
 
 </div>
 
-**RetentionAI Frontend** est l'interface utilisateur destinée aux managers RH. Développée avec **Next.js**, elle permet d'interagir avec l'API prédictive, de visualiser les risques de départ des employés et de consulter les plans de rétention générés par l'IA.
+> **Tableau de bord décisionnel pour l'analyse du turnover et la gestion des talents.**
+
+## 🔗 API Intelligente
+Ce dashboard consomme les services prédictifs hébergés ici :
+👉 **[Retention-AI-API](https://github.com/moubarak1ezzyani/RetentionAI---Pr-dicteur-de-D-part-Assistant-RH-_BackEnd.git)**
+
+**Retention Decision Dashboard** est l'interface utilisateur destinée aux managers RH. Développée avec **Next.js**, elle permet d'interagir avec l'API prédictive, de visualiser les risques de départ des employés et de consulter les plans de rétention générés par l'IA.
 
 ---
 
