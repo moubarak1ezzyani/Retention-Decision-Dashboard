@@ -137,9 +137,7 @@ npm run dev
 
 Le projet est déployé en production et accessible via le lien ci-dessous :
 
-👉 **[LIEN_DE_VOTRE_APP_VERCEL_ICI]**
-
-> *Note pour le jury : Si le lien est inactif, assurez-vous que le backend (API) est également en ligne pour traiter les requêtes.*
+👉 **[LINK]**
 
 ---
 
