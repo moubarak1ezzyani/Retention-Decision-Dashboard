@@ -10,150 +10,144 @@
 
 </div>
 
-> **Tableau de bord décisionnel pour l'analyse du turnover et la gestion des talents.**
+> **Decision-making dashboard for turnover analysis and talent management.**
 
-## 🔗 API Intelligente
-Ce dashboard consomme les services prédictifs hébergés ici :
+## 🔗 Intelligent API
+This dashboard consumes the predictive services hosted here:
 👉 **[Retention-AI-API](https://github.com/moubarak1ezzyani/Retention-AI-API.git)**
 
-**Retention Decision Dashboard** est l'interface utilisateur destinée aux managers RH. Développée avec **Next.js**, elle permet d'interagir avec l'API prédictive, de visualiser les risques de départ des employés et de consulter les plans de rétention générés par l'IA.
+**Retention Decision Dashboard** is the user interface designed for HR managers. Developed with **Next.js**, it allows interaction with the predictive API, visualizes employee churn risks, and provides AI-generated retention plans.
 
 ---
 
-## 📋 Fonctionnalités Clés
+## 📋 Key Features
 
-Ce frontend a été conçu pour offrir une expérience utilisateur fluide et ergonomique :
+This frontend was designed to offer a smooth and intuitive user experience:
 
-1. **Authentification Sécurisée** : Connexion via JWT pour accéder au tableau de bord.
-2. **Formulaire Employé** : Saisie intuitive des données RH (Âge, Département, Satisfaction, etc.).
-3. **Visualisation du Risque** : Affichage clair de la probabilité de départ (Churn Score).
-4. **Assistant IA** : Affichage dynamique du plan de rétention généré si le risque est critique (>50%).
+1. **Secure Authentication**: Login via JWT to access the dashboard.
+2. **Employee Form**: Intuitive input of HR data (Age, Department, Satisfaction, etc.).
+3. **Risk Visualization**: Clear display of the churn probability (Churn Score).
+4. **AI Assistant**: Dynamic display of the generated retention plan if the risk is critical (>50%).
 
 ---
 
 ## 🛠️ Architecture & Technologies
 
-### Interface & Logique
+### Interface & Logic
 
-* **Framework** : Next.js (App Router) - Pour le rendu côté serveur et le routing.
-* **Langage** : JavaScript (ES6+)
-* **Style** : CSS Modules / Tailwind CSS (pour le Responsive Design).
-* **Gestion d'état** : React Hooks (`useState`, `useEffect`).
+* **Framework**: Next.js (App Router) - For server-side rendering and routing.
+* **Language**: JavaScript (ES6+)
+* **Style**: CSS Modules / Tailwind CSS (for Responsive Design).
+* **State Management**: React Hooks (`useState`, `useEffect`).
 
-### Intégration
+### Integration
 
-* **Communication API** : Fetch / Axios (situé dans le dossier `services/`).
-* **Conteneurisation** : Docker (pour un déploiement iso-prod).
+* **API Communication**: Fetch / Axios (located in the `services/` folder).
+* **Containerization**: Docker (for an iso-prod deployment).
 
 ---
 
-## 📂 Structure du Projet
+## 📂 Project Structure
 
-Voici l'arborescence basée sur l'architecture Next.js App Router :
+Here is the directory tree based on the Next.js App Router architecture:
 
 ```text
 RetentionAI-Frontend/
 ├── src/
 │   └── my-app/
 │       ├── app/
-│       │   ├── dashboard/       # Espace protégé (Tableau de bord RH)
-│       │   │   └── page.js      # Vue principale du Dashboard
-│       │   ├── layout.js        # Structure globale (Nav, Footer)
-│       │   └── page.js          # Page d'accueil / Login
+│       │   ├── dashboard/       # Protected space (HR Dashboard)
+│       │   │   └── page.js      # Main view of the Dashboard
+│       │   ├── layout.js        # Global structure (Nav, Footer)
+│       │   └── page.js          # Home page / Login
 │       │
-│       ├── components/          # Composants UI réutilisables (Forms, Cards...)
-│       ├── services/            # Logique d'appel à l'API Backend (Auth, Predict)
-│       ├── utils/               # Fonctions utilitaires (Formatage, Helpers)
-│       └── node_modules/        # Dépendances NPM
+│       ├── components/          # Reusable UI components (Forms, Cards...)
+│       ├── services/            # Backend API call logic (Auth, Predict)
+│       ├── utils/               # Utility functions (Formatting, Helpers)
+│       └── node_modules/        # NPM Dependencies
 │
-├── public/                      # Images et assets statiques
-├── .next/                       # Build de production
-├── Dockerfile                   # Configuration de l'image Docker
-├── package.json                 # Gestion des dépendances
+├── public/                      # Images and static assets
+├── .next/                       # Production build
+├── Dockerfile                   # Docker image configuration
+├── package.json                 # Dependency management
 └── README.md                    # Documentation
 
 ```
 
 ---
 
-## 🚀 Installation et Démarrage
+## 🚀 Installation and Setup
 
-### Pré-requis
+### Prerequisites
 
-* Le **Backend RetentionAI** doit être lancé (localement ou sur serveur).
-* Node.js (v18+) ou Docker.
+* The **RetentionAI Backend** must be running (locally or on a server).
+* Node.js (v18+) or Docker.
 
 ### Configuration
 
-Créez un fichier `.env.local` à la racine pour lier le frontend à votre API Backend :
+Create a `.env.local` file in the root directory to link the frontend to your Backend API:
 
 ```env
-# URL de votre API FastAPI (Backend)
+# URL of your FastAPI API (Backend)
 NEXT_PUBLIC_API_URL=http://localhost:8000
 
 ```
 
-### Option 1 : Démarrage avec Docker (Recommandé)
+### Option 1: Start with Docker (Recommended)
 
-1. **Construire l'image**
+1. **Build the image**
 ```bash
 docker build -t retention-frontend .
 
 ```
 
-
-2. **Lancer le conteneur**
+2. **Run the container**
 ```bash
 docker run -p 3000:3000 retention-frontend
 
 ```
 
+The application will be accessible at `http://localhost:3000`.
 
+### Option 2: Manual Installation (Local)
 
-L'application sera accessible sur `http://localhost:3000`.
-
-### Option 2 : Installation Manuelle (Local)
-
-1. **Installer les dépendances**
+1. **Install dependencies**
 ```bash
 npm install
-# ou
+# or
 yarn install
 
 ```
 
-
-2. **Lancer le serveur de développement**
+2. **Start the development server**
 ```bash
 npm run dev
 
 ```
 
-
-
 ---
 
-## 🌐 Déploiement Vercel
+## 🌐 Vercel Deployment
 
-Le projet est déployé en production et accessible via le lien ci-dessous :
+The project is deployed in production and accessible via the link below:
 
 👉 **[LINK]**
 
 ---
 
-## 🔗 Intégration Backend
+## 🔗 Backend Integration
 
-Ce frontend communique avec les endpoints suivants du Backend FastAPI :
+This frontend communicates with the following FastAPI Backend endpoints:
 
-* `POST /login` : Récupération du Token JWT (stocké en `localStorage` ou `Cookie`).
-* `POST /predict` : Envoi des données employé pour analyse ML.
-* `POST /generate-retention-plan` : Appel de l'IA Générative en cas de risque élevé.
+* `POST /login`: Retrieval of the JWT Token (stored in `localStorage` or `Cookie`).
+* `POST /predict`: Sending employee data for ML analysis.
+* `POST /generate-retention-plan`: Calling Generative AI in case of high risk.
 
 ---
 
-## 📸 Aperçu du Parcours Utilisateur
+## 📸 User Journey Overview
 
-1. **Login** : L'utilisateur RH s'identifie (`hr_manager`).
-2. **Input** : Il remplit les caractéristiques du collaborateur évalué.
-3. **Analyse** : Le système affiche une jauge de risque (ex: **78%**).
-4. **Action** : Si le risque est "High", le plan de rétention s'affiche automatiquement sous forme de liste d'actions concrètes.
+1. **Login**: The HR user logs in (`hr_manager`).
+2. **Input**: They fill in the characteristics of the evaluated employee.
+3. **Analysis**: The system displays a risk gauge (e.g., **78%**).
+4. **Action**: If the risk is "High", the retention plan is automatically displayed as a list of concrete actions.
