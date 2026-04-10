@@ -1,16 +1,15 @@
 import axios from 'axios';
 
-// Création d'une instance Axios configurée
 const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:8000',
+  baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000',
   headers: {
     'Content-Type': 'application/json',
   },
 });
 
-// Intercepteur : Ajoute le token automatiquement à chaque requête
+// Request Interceptor
 api.interceptors.request.use((config) => {
-  if (typeof window !== 'undefined') { // Vérifie qu'on est côté navigateur
+  if (typeof window !== 'undefined') {
     const token = localStorage.getItem('token');
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
@@ -19,14 +18,14 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
-// Intercepteur : Si le token est périmé (Erreur 401), on redirige vers le login
+// Response Interceptor
 api.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response && error.response.status === 401) {
       if (typeof window !== 'undefined') {
         localStorage.removeItem('token');
-        window.location.href = '/'; // Retour case départ
+        window.location.href = '/auth';
       }
     }
     return Promise.reject(error);
