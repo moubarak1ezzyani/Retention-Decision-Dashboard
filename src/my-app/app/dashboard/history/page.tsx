@@ -57,7 +57,8 @@ export default function HistoryPage() {
                 </tr>
               ) : (
                 history.map((record, index) => {
-                  const score = record.churn_probability;
+                  // Mapped to match backend variables exactly
+                  const score = record.probability;
                   const riskColor = score > 0.75 ? 'text-red-500' : score > 0.50 ? 'text-amber-500' : 'text-emerald-500';
                   const bgRiskColor = score > 0.75 ? 'bg-red-500/10' : score > 0.50 ? 'bg-amber-500/10' : 'bg-emerald-500/10';
                   
@@ -67,10 +68,10 @@ export default function HistoryPage() {
                         {new Date(record.timestamp || Date.now()).toLocaleDateString()}
                       </td>
                       <td className="px-8 py-6 text-sm text-slate-400">
-                        {record.employee_data?.Department || "---"}
+                        {record.department || "---"}
                       </td>
                       <td className="px-8 py-6 text-sm text-slate-400 italic">
-                        {record.employee_data?.JobRole || "---"}
+                        {record.role || "---"}
                       </td>
                       <td className={`px-8 py-6 text-sm font-bold ${riskColor}`}>
                         {Formatter.percent(score)}
