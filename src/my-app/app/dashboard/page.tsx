@@ -24,18 +24,29 @@ export default function Dashboard() {
       const res = await api.post('/predict', data);
       setPrediction(res.data);
 
-      // 2. Automatically generate plan if risk is > 0.50
-      if (res.data.churn_probability > 0.50) {
-        const planRes = await api.post('/generate-retention-plan', data);
-        setRetentionPlan(planRes.data.retention_plan);
-      } else {
-        // Even for low risk, we might show tips
-        const planRes = await api.post('/generate-retention-plan', data);
-        setRetentionPlan(planRes.data.retention_plan);
-      }
+      // 2. Generate Plan
+      // Since your backend now checks if risk <= 0.50 and returns a default plan,
+      // we can just make the call directly without an 'if' statement!
+      const planRes = await api.post('/generate-retention-plan', data);
+      setRetentionPlan(planRes.data.retention_plan);
+
     } catch (err: any) {
-      console.error(err);
-      alert(err.response?.data?.detail || "Error communicating with the predictive API.");
+      console.error("Full backend error:", err);
+      
+      // Better error handling for FastAPI validation arrays
+      let errorMessage = "Error communicating with the predictive API.";
+      if (err.response?.data?.detail) {
+        const detail = err.response.data.detail;
+        if (Array.isArray(detail)) {
+          errorMessage = detail.map((errItem: any) => 
+            `Field '${errItem.loc[errItem.loc.length - 1]}': ${errItem.msg}`
+          ).join('\n');
+        } else {
+          errorMessage = typeof detail === 'string' ? detail : JSON.stringify(detail, null, 2);
+        }
+      }
+      
+      alert(`Backend Error:\n\n${errorMessage}`);
     } finally {
       setLoading(false);
     }
