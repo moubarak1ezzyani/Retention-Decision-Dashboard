@@ -52,26 +52,25 @@ This frontend was designed to offer a smooth and intuitive user experience:
 Here is the directory tree based on the Next.js App Router architecture:
 
 ```text
-RetentionAI-Frontend/
-├── src/
-│   └── my-app/
-│       ├── app/
-│       │   ├── dashboard/       # Protected space (HR Dashboard)
-│       │   │   └── page.js      # Main view of the Dashboard
-│       │   ├── layout.js        # Global structure (Nav, Footer)
-│       │   └── page.js          # Home page / Login
-│       │
-│       ├── components/          # Reusable UI components (Forms, Cards...)
-│       ├── services/            # Backend API call logic (Auth, Predict)
-│       ├── utils/               # Utility functions (Formatting, Helpers)
-│       └── node_modules/        # NPM Dependencies
-│
-├── public/                      # Images and static assets
-├── .next/                       # Production build
+Retention-Decision-Dashboard/
 ├── Dockerfile                   # Docker image configuration
-├── package.json                 # Dependency management
-└── README.md                    # Documentation
-
+├── README.md                    # Root documentation
+├── src/
+│   └── my-app/                  # Main Next.js application
+│       ├── app/                 # Next.js App Router
+│       │   ├── auth/            # Authentication pages (Login/Register)
+│       │   ├── dashboard/       # Protected space (HR Dashboard)
+│       │   │   └── page.tsx     # Main view of the Dashboard
+│       │   ├── layout.tsx       # Global structure (Nav, Footer, Providers)
+│       │   ├── page.tsx         # Landing page / Home
+│       │   └── globals.css      # Global Styles
+│       │
+│       ├── components/          # Reusable UI components (Forms, Gauges, Cards)
+│       ├── services/            # API call logic (Predict, Auth, LLM)
+│       ├── utils/               # Utility functions & Helpers
+│       ├── public/              # Images and static assets
+│       ├── package.json         # Dependency management
+│       └── tsconfig.json        # TypeScript configuration
 ```
 
 ---
