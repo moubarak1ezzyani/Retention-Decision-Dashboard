@@ -151,3 +151,48 @@ This frontend communicates with the following FastAPI Backend endpoints:
 2. **Input**: They fill in the characteristics of the evaluated employee.
 3. **Analysis**: The system displays a risk gauge (e.g., **78%**).
 4. **Action**: If the risk is "High", the retention plan is automatically displayed as a list of concrete actions.
+
+---
+
+## 🧪 Testing Guide (Dashboard UI)
+
+To test the predictive model and the AI integration directly from the user interface, launch the dashboard and manually enter the following test profiles into the form. 
+
+### 🚨 Test 1: The "Flight Risk" (Triggers AI)
+This employee is overworked, underpaid, and unhappy.
+* **Age:** 24
+* **Monthly Income ($):** 2500
+* **Department:** Sales
+* **Job Role:** Sales Representative
+* **Business Travel:** Travel_Frequently
+* **Overtime:** Yes *(Critical trigger)*
+* **Job Satisfaction (1-4):** 1
+* **Work Life Balance (1-4):** 1
+
+> **👉 Expected Result:** The Risk Gauge should shoot up well above 50%. The UI will display a custom-generated AI plan focusing on reducing hours, increasing compensation, or offering support.
+
+### 🛡️ Test 2: The "Happy Lifer" (Standard Response)
+This is a senior manager with great pay, high satisfaction, and no overtime.
+* **Age:** 45
+* **Monthly Income ($):** 15000
+* **Department:** Research & Development
+* **Job Role:** Manager
+* **Business Travel:** Non-Travel
+* **Overtime:** No
+* **Job Satisfaction (1-4):** 4
+* **Work Life Balance (1-4):** 4
+
+> **👉 Expected Result:** The Risk Gauge should drop very low (typically < 15%). The UI will display the default message: *"Churn probability is below 50% — no urgent retention action required."*
+
+### ⚠️ Test 3: The "Burnout" Profile (AI Context Test)
+This is a technical worker who generally likes their job but is suffering from severe burnout due to overtime.
+* **Age:** 32
+* **Monthly Income ($):** 7000
+* **Department:** Research & Development
+* **Job Role:** Laboratory Technician
+* **Business Travel:** Travel_Rarely
+* **Overtime:** Yes
+* **Job Satisfaction (1-4):** 3
+* **Work Life Balance (1-4):** 1
+
+> **👉 Expected Result:** The risk will be elevated. The AI should successfully recognize the discrepancy (high involvement vs. poor balance) and generate a plan that specifically addresses work-life balance and mandatory time off.
