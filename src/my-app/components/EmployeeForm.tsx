@@ -15,6 +15,7 @@ interface EmployeeFormProps {
 
 export default function EmployeeForm({ onSubmit, isLoading }: EmployeeFormProps) {
   const [formData, setFormData] = useState({
+    // --- Fields visible in the UI ---
     Age: 30,
     MonthlyIncome: 5000,
     Department: 'Sales',
@@ -27,6 +28,26 @@ export default function EmployeeForm({ onSubmit, isLoading }: EmployeeFormProps)
     EnvironmentSatisfaction: 3,
     JobSatisfaction: 3,
     WorkLifeBalance: 3,
+
+    // --- Default values to satisfy backend validation ---
+    DailyRate: 800,
+    DistanceFromHome: 10,
+    HourlyRate: 65,
+    MonthlyRate: 15000,
+    NumCompaniesWorked: 2,
+    PercentSalaryHike: 14,
+    TotalWorkingYears: 8,
+    TrainingTimesLastYear: 3,
+    YearsAtCompany: 5,
+    YearsInCurrentRole: 3,
+    YearsSinceLastPromotion: 1,
+    YearsWithCurrManager: 3,
+    Education: 3,
+    JobInvolvement: 3,
+    JobLevel: 2,
+    PerformanceRating: 3,
+    RelationshipSatisfaction: 3,
+    StockOptionLevel: 1
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
